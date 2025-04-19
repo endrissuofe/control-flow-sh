@@ -1,5 +1,4 @@
 #!/bin/bash
-for i in 1 2 3 4 5
-do
-  echo "Hello, World! This is message $i"
+for ((i=1; i<=5; i++)); do
+    echo "C-style iteration $i"
 done

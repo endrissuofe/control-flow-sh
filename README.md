@@ -63,40 +63,69 @@ fi
 ```
 ## Step 6: Add elif statement to the script to check if number is negative or zero and execute. 
 ```bash
-#!/bin/bash 
+#!/bin/bash
 read -p "Enter a number: " num
-echo "You have entered the number $num"
+if ! [[ $num =~ ^-?[0-9]+$ ]]; then
+    echo "Error: Please enter a valid integer."
+    exit 1
+fi
+
 if [ $num -gt 0 ]; then
-    echo "The number is a positive."
+    echo "The number is positive."
 elif [ $num -lt 0 ]; then
-    echo "The number is a negative."
+    echo "The number is negative."
 else
     echo "The number is zero."
 fi
 ```
 **Output:**
-![control_flow.sh step 6](img/excecute4.png)
+![elif statement](img/excecute4.png)
 
 ## LOOP STATEMENTS
 Loop statements allow you to execute a block of code multiple times. The most common loop statements in bash scripting are `for`, `while`, and `until` loops.
 
-## For Loop
-The for loop allows you to iterate over a list of items. The for loop has main forms. `The list` form and `C-style form` The syntax is as follows:
+### For Loop
+The `for` loop allows you to iterate over a list of items or a range of numbers. Below are examples of both list-based and range-based loops, as well as a C-style loop.
 
+#### List-based for loop
+The list-based `for` loop iterates over a predefined list of items. The syntax is as follows:
 ```bash
 for item in item1 item2 item3; do
     echo $item
 done
-
 ```
-example:
+**Example:**
 ```bash
+for item in apple banana cherry; do
+    echo $item
+done
+```
+
+**Output:**
+![list based for loop](img/lo1.png)
+
+---
+#### Range-based For Loop
+The range-based `for` loop iterates over a sequence of numbers. The syntax is as follows:
+
+```bash
+for i in {start..end}; do
+    commands
+done
+```
+
+**Example:**
+```bash
+#!/bin/bash
 for i in {1..5}; do
-    echo "Hello, World! This is message $i"
+    echo "Iteration $i"
 done
 ```
 **Output:**
-![control_flow.sh step 7](img/loop.png)
+![range based for loop](img/lo2.png)
+
+####
+
 
 ### Task 2:
 1. Create a shell script types of the for loop
@@ -114,7 +143,7 @@ touch for_loop.sh
 2. Insert the code in the file
 ```bash
 #!/bin/bash
-for i in {1..5}; do
+for i in {1..10}; do
     echo "Hello, World! This is message $i"
 done
 ```
@@ -132,11 +161,23 @@ chmod +x loop.sh
 ```
 ![for_loop.sh](img/forloop3.png)
 
-When the script  was executed, it iterated through the number 1 to 5 and printed the message "Hello, World! This is message $i" for each iteration. The output was as expected, with each message displayed on a new line. The script worked correctly and demonstrated the functionality of the for loop in bash scripting.
+When the script  was executed, it iterated through the number 1 to 10 and printed the message "Hello, World! This is message $i" for each iteration. The output was as expected, with each message displayed on a new line. The script worked correctly and demonstrated the functionality of the for loop in bash scripting.
 
-## C-style for loop:
+#### C-style For Loop
+The C-style `for` loop uses initialization, condition, and increment expressions. The syntax is as follows:
+
 ```bash
-for ((i=1; i<=5; i++)); do
-    echo "Hello, World! This is message $i"
+for ((initialization; condition; increment)); do
+    commands
 done
 ```
+
+**Example:**
+```bash
+#!/bin/bash
+for ((i=1; i<=5; i++)); do
+    echo "C-style iteration $i"
+done
+```
+**Output:**
+![C-style for loop](img/lol4.png)
